@@ -46,8 +46,9 @@ public final class HtmlRenderer implements ReportRenderer {
                 .append("<p class=\"meta\">Gerado em ").append(escape(report.generatedAt().toString()))
                 .append(" · ").append(report.jobs().size()).append(" jobs · ")
                 .append(report.alerts().size()).append(" alertas (")
-                .append(report.criticalCount()).append(" críticos, ")
-                .append(report.warningCount()).append(" de atenção)</p>\n");
+                .append(report.criticalCount()).append(" ")
+                .append(plural(report.criticalCount(), "crítico", "críticos"))
+                .append(", ").append(report.warningCount()).append(" de atenção)</p>\n");
 
         out.append("<h2>Alertas</h2>\n");
         if (report.alerts().isEmpty()) {
@@ -94,6 +95,10 @@ public final class HtmlRenderer implements ReportRenderer {
 
     private static String levelClass(AlertLevel level) {
         return "<span class=\"badge\">" + level.label() + "</span>";
+    }
+
+    private static String plural(long count, String singular, String plural) {
+        return count == 1 ? singular : plural;
     }
 
     static String escape(String value) {

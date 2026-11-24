@@ -15,8 +15,9 @@ public final class MarkdownRenderer implements ReportRenderer {
                 .append("**Gerado em:** ").append(escape(report.generatedAt().toString())).append("  \n")
                 .append("**Jobs monitorados:** ").append(report.jobs().size()).append("  \n")
                 .append("**Alertas:** ").append(report.alerts().size())
-                .append(" (").append(report.criticalCount()).append(" críticos, ")
-                .append(report.warningCount()).append(" de atenção)\n\n");
+                .append(" (").append(report.criticalCount()).append(" ")
+                .append(plural(report.criticalCount(), "crítico", "críticos"))
+                .append(", ").append(report.warningCount()).append(" de atenção)\n\n");
 
         out.append("## Alertas\n\n");
         if (report.alerts().isEmpty()) {
@@ -67,5 +68,9 @@ public final class MarkdownRenderer implements ReportRenderer {
                 .replace("|", "\\|")
                 .replace("\r", " ")
                 .replace("\n", " ");
+    }
+
+    private static String plural(long count, String singular, String plural) {
+        return count == 1 ? singular : plural;
     }
 }
