@@ -1,0 +1,8 @@
+job,executadoEm,status,duracaoMin,detalhes
+financeiro,2026-11-23T02:15,SUCCESS,38,concluido
+financeiro,2026-11-24T02:12,FAILED,5,timeout no destino
+clientes,2026-11-24T01:30,SUCCESS,51,concluido
+sistema-chamados,2026-11-22T03:00,SUCCESS,22,concluido
+inventario,2026-11-20T04:00,SUCCESS,14,concluido
+logs-aplicacao,2026-11-24T00:30,SUCCESS,9,concluido
+logs-aplicacao,2026-11-24T05:45,SKIPPED,0,janela compartilhada
